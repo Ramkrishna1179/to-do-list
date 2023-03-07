@@ -1,25 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
-
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import React, { Component } from "react";
+import "./index.css";
+import Form from "./components/form";
+import List from "./components/list";
+export default class App extends Component {
+  state = {
+    data:[{todo:"cooking"}]
+  }
+  handleSubmit =(newVal)=>{
+  this.setState({data:[...this.state.data,newVal]})
+  }
+  
+  render() {
+    const data = this.state;
+    return (
+      <div className="app">
+        <Form onSubmit={this.handleSubmit} />
+        <h1>To do list</h1>
+        <List todo={data}/>
+      </div>
+    );
+  }
 }
-
-export default App;
